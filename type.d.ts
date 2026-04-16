@@ -12,45 +12,40 @@ declare global {
     icon: ImageSourcePropType;
   }
 
-  interface Subscription {
+  interface WellnessMetric {
     id: string;
-    icon: ImageSourcePropType;
-    name: string;
-    plan?: string;
-    category?: string;
-    paymentMethod?: string;
-    status?: string;
-    startDate?: string;
-    price: number;
-    currency?: string;
-    billing: string;
-    renewalDate?: string;
-    color?: string;
+    label: string;
+    value: number;
+    unit: string;
+    target: number;
+    direction: "up" | "down";
+    note?: string;
   }
 
-  interface SubscriptionCardProps extends Omit<Subscription, "id"> {
-    expanded: boolean;
-    onPress: () => void;
-    onCancelPress?: () => void;
-    isCancelling?: boolean;
-  }
-
-  interface UpcomingSubscription {
+  interface YogaPosture {
     id: string;
-    icon: ImageSourcePropType;
     name: string;
-    price: number;
-    currency?: string;
-    daysLeft: number;
+    sanskritName: string;
+    level: "Beginner" | "Intermediate" | "Advanced";
+    focus: string;
+    idealDurationMin: number;
+    benefits: string[];
+    howTo: string[];
+    caution: string;
   }
 
-  interface UpcomingSubscriptionCardProps extends Omit<
-    UpcomingSubscription,
-    "id"
-  > {}
-
-  interface ListHeadingProps {
+  interface SessionPreset {
+    id: string;
     title: string;
+    minutes: number;
+    intensity: "Gentle" | "Steady" | "Power";
+    includes: string;
+  }
+
+  interface WeeklySessionStat {
+    id: string;
+    day: string;
+    minutes: number;
   }
 }
 

@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
+import { WellnessProvider } from "@/context/wellness-context";
 import "../global.css";
 
 export default function RootLayout() {
@@ -19,5 +20,9 @@ export default function RootLayout() {
   if (!fontsLoaded) {
     return null;
   }
-  return <Stack />;
+  return (
+    <WellnessProvider>
+      <Stack />
+    </WellnessProvider>
+  );
 }

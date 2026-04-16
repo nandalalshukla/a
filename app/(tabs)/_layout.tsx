@@ -1,26 +1,30 @@
 import { tabs } from "@/constants/data";
-import { colors, components } from "@/constants/theme";
-import clsx from "clsx";
 import { BlurView } from "expo-blur";
 import { Tabs } from "expo-router";
 import { Image, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const tabBar = components.tabBar;
+const tabBar = {
+  height: 72,
+  horizontalInset: 16,
+  radius: 28,
+  iconFrame: 48,
+};
 
 const TabIcon = ({ focused, icon }: TabIconProps) => {
+  const containerClass = focused
+    ? "h-12 w-12 items-center justify-center rounded-full border-2 border-[#0B6E4F] bg-[#0B6E4F]"
+    : "h-12 w-12 items-center justify-center rounded-full border-2 border-[#0F172A] bg-[#F8FAFC]";
+  const iconColor = focused ? "#FFFFFF" : "#0F172A";
+
   return (
     <View className="items-center justify-center">
-      <View
-        className={clsx(
-          "h-12 w-12 items-center justify-center rounded-full border border-white/15",
-          focused ? "bg-white/30" : "bg-white/10",
-        )}
-      >
+      <View className={containerClass}>
         <Image
           source={icon}
           resizeMode="contain"
-          className={clsx("h-6 w-6", focused ? "opacity-100" : "opacity-80")}
+          className="h-6 w-6"
+          style={{ tintColor: iconColor, opacity: 1 }}
         />
       </View>
     </View>
@@ -38,7 +42,7 @@ const TabLayout = () => {
         tabBarBackground: () => (
           <BlurView
             intensity={90}
-            tint="dark"
+            tint="light"
             style={StyleSheet.absoluteFill}
           />
         ),
@@ -48,16 +52,16 @@ const TabLayout = () => {
           height: tabBar.height,
           marginHorizontal: tabBar.horizontalInset,
           borderRadius: tabBar.radius,
-          backgroundColor: "rgba(8, 17, 38, 0.45)",
+          backgroundColor: "rgba(236, 243, 239, 0.98)",
           borderTopWidth: 0,
           borderWidth: 1,
-          borderColor: "rgba(255, 255, 255, 0.14)",
+          borderColor: "rgba(15, 23, 42, 0.25)",
           overflow: "hidden",
           elevation: 24,
-          shadowColor: "#000",
-          shadowOpacity: 0.22,
-          shadowRadius: 24,
-          shadowOffset: { width: 0, height: 12 },
+          shadowColor: "#0F172A",
+          shadowOpacity: 0.2,
+          shadowRadius: 18,
+          shadowOffset: { width: 0, height: 8 },
         },
         tabBarItemStyle: {
           paddingVertical: tabBar.height / 2 - tabBar.iconFrame / 2,
